@@ -19,7 +19,17 @@ from draw import *
   with the name being used.
   ==================== """
 def first_pass( commands ):
-    pass
+    # if = to 0 then the variable is not found
+    frames_found = 0
+    vary_found = 0
+    basename_found = 0
+    for command in commands:
+        if (command == "frames"):
+            frames_found = 1
+        if (command == "basename"):
+            basename_found = 1
+        if (command == "vary"):
+            vary_found = 1
 
 """======== second_pass( commands ) ==========
 
@@ -82,9 +92,10 @@ def run(filename):
     coords1 = []
 
     p = mdl.parseFile(filename)
-
+    print p
     if p:
         (commands, symbols) = p
+        first_pass(commands)
     else:
         print "Parsing failed."
         return
